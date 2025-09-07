@@ -4,7 +4,7 @@
 
 ---
 
-![screenshot](src\assets\screenshot.png)
+![screenshot](src/assets/screenshot.png)
 
 ### برای پیش‌نمایش زنده اینجا کلیک کنید 👈 [پیش‌نمایش](https://micodex.github.io/mx-expense-tracker/)
 
