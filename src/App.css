@@ -1,0 +1,41 @@
+/* Inside src/index.css or src/main.css */
+
+body {
+  /* font-family: "Vazirmatn", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-feature-settings: "ss01"; */
+  font-family: Vazir FD, sans-serif;
+}
+
+/* A simple fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out;
+  
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fadeout {
+  animation: fadeout .3s ease-out;
+}
