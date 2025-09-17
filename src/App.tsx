@@ -1,5 +1,6 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import ExpenseItem from "./components/ExpenseItem";
 import NoExpense from "./components/NoExpense";
 import Dashboard from "./components/Dashboard";
@@ -15,7 +16,12 @@ export interface Transaction {
 }
 
 function App() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  // get saved transactions from local storage or []
+  const [transactions, setTransactions] = useState<Transaction[]>(() => {
+    const saved = localStorage.getItem("transactions");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [transaction, setTransaction] = useState<Transaction>({
     id: 0,
     name: "",
@@ -24,6 +30,25 @@ function App() {
     category: "",
     date: "",
   });
+
+  // Load transactions from localStorage on component mount
+  useEffect(() => {
+    const savedTransactions = JSON.parse(
+      localStorage.getItem("transactions") || "[]"
+    ) as Transaction[];
+    setTransactions(savedTransactions);
+
+    // Set default date to today
+    setTransaction((prev) => ({
+      ...prev,
+      date: new Date().toISOString().split("T")[0],
+    }));
+  }, []);
+
+  // Save transactions to localStorage whenever transactions change
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions]);
 
   const [filter, setFilter] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState<string>("");
