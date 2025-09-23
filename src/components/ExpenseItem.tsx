@@ -1,22 +1,22 @@
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaArrowTrendDown } from "react-icons/fa6";
-
 import type { Transaction } from "../App";
 
 interface Props {
   transaction: Transaction;
   handleDelete: (id: number) => void;
+  handleEdit: (trans: Transaction) => void;
 }
 
-const ExpenseItem = ({ transaction, handleDelete }: Props) => {
+const ExpenseItem = ({ transaction, handleDelete, handleEdit }: Props) => {
   return (
     <div
       dir="rtl"
       key={transaction.id}
-      className="
+      className={`
           flex justify-between items-center rounded-lg border-2
-        bg-white border-gray-100 hover:border-gray-200 transition-border duration-60 p-4
-      "
+        bg-white border-gray-200 hover:border-gray-300 transition-border duration-60 p-4
+      `}
     >
       <div className="">
         <h3 className="font-semibold">{transaction.name}</h3>
@@ -39,7 +39,10 @@ const ExpenseItem = ({ transaction, handleDelete }: Props) => {
           {transaction.amount}{" "}
           <span className="text-xs text-gray-700">تومان</span>
         </div>
-        <button className="text-blue-600 hover:text-blue-800 p-1">
+        <button
+          className="text-blue-600 hover:text-blue-800 p-1"
+          onClick={() => handleEdit(transaction)}
+        >
           <svg
             className="h-5 w-5"
             fill="none"

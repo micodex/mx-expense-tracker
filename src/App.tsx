@@ -104,16 +104,27 @@ function App() {
       !transaction.category ||
       !transaction.date
     ) {
-      alert("Please fill in all fields");
+      alert("لطفا همه فیلد ها رو پر کنید ");
       return;
     }
 
-    const newTransaction: Transaction = {
-      ...transaction,
-      id: Date.now(),
-    };
-    // add new transaction
-    setTransactions((prev) => [...prev, newTransaction]);
+    if (isEditing) {
+      // Update existing transaction
+      setTransactions((prev) =>
+        prev.map((trans) =>
+          trans.id === transaction.id ? { ...transaction } : trans
+        )
+      );
+
+      setIsEditing(false);
+    } else {
+      const newTransaction: Transaction = {
+        ...transaction,
+        id: Date.now(),
+      };
+      // add new transaction
+      setTransactions((prev) => [...prev, newTransaction]);
+    }
   };
 
   // delete a transaction
@@ -152,6 +163,21 @@ function App() {
 
   const handleTypeChange = (type: "income" | "expense") => {
     setTransaction((prev) => ({ ...prev, type: type }));
+  };
+
+  // handle edit a transaction
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const handleEdit = (trans: Transaction) => {
+    setTransaction({
+      id: trans.id,
+      name: trans.name,
+      amount: trans.amount,
+      type: trans.type,
+      category: trans.category,
+      date: trans.date,
+    });
+
+    setIsEditing(true);
   };
 
   return (
@@ -292,11 +318,33 @@ function App() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="border-b border-gray-300"></div>
+                <div className="border-b border-gray-300 py-2"></div>
                 <div>
-                  <button className="w-full py-2 font-bold text-lg rounded-lg text-white bg-blue-500 cursor-pointer hover:bg-blue-600">
-                    اضافه کن
+                  <button
+                    type="submit"
+                    className="w-full py-2 font-bold text-lg rounded-lg text-white bg-blue-500 cursor-pointer hover:bg-blue-600"
+                  >
+                    {isEditing ? "ویرایش" : "اضافه کن"}
                   </button>
+                  {isEditing && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsEditing(false);
+                        setTransaction({
+                          id: 0,
+                          name: "",
+                          amount: 0,
+                          type: "expense",
+                          category: "",
+                          date: new Date().toISOString().split("T")[0],
+                        });
+                      }}
+                      className="w-full py-2 mt-2 font-bold text-lg rounded-lg text-zinc-200 bg-zinc-800 cursor-pointer hover:bg-zinc-900"
+                    >
+                      بازگشت
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
@@ -359,6 +407,7 @@ function App() {
                       <ExpenseItem
                         transaction={exp}
                         handleDelete={handleDelete}
+                        handleEdit={handleEdit}
                       />
                     </div>
                   ))}
