@@ -81,7 +81,7 @@ function App() {
     "واریزی",
     "دیگر",
   ];
-  // Handle input change
+  //  ------ Handle input change ------
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -94,7 +94,7 @@ function App() {
     }));
   };
 
-  // create a new transaction
+  // ------ create a new transaction ------
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -125,9 +125,11 @@ function App() {
       // add new transaction
       setTransactions((prev) => [...prev, newTransaction]);
     }
+
+    removeDashedBorder();
   };
 
-  // delete a transaction
+  // ------ delete a transaction ------
   const handleDelete = (id: number): void => {
     const element = document.querySelector(`[data-id="${id}"]`);
     if (element) {
@@ -165,9 +167,24 @@ function App() {
     setTransaction((prev) => ({ ...prev, type: type }));
   };
 
-  // handle edit a transaction
+  // ------ handle edit a transaction ------
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const handleEdit = (trans: Transaction) => {
+
+  const removeDashedBorder = (): void => {
+    // function to remove dashed border from all transaction elements
+    const transItems = document.querySelectorAll(".transaction");
+    transItems.forEach((item) => item.classList.remove("dashed-border"));
+  };
+
+  const handleEdit = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    trans: Transaction
+  ) => {
+    // remove all dashed borders
+    removeDashedBorder();
+    // add black border to editing item
+    event.currentTarget.closest(".transaction")?.classList.add("dashed-border");
+
     setTransaction({
       id: trans.id,
       name: trans.name,
@@ -339,6 +356,7 @@ function App() {
                           category: "",
                           date: new Date().toISOString().split("T")[0],
                         });
+                        removeDashedBorder();
                       }}
                       className="w-full py-2 mt-2 font-bold text-lg rounded-lg text-zinc-200 bg-zinc-800 cursor-pointer hover:bg-zinc-900"
                     >

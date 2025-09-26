@@ -19,7 +19,7 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-}
+ }
 
 .animate-fadeIn {
   animation: fadeIn 1s ease-out;
@@ -38,4 +38,10 @@ body {
 
 .animate-fadeout {
   animation: fadeout .3s ease-out;
+  
+}
+
+.dashed-border {
+  outline: 2px dashed black;
+  border-radius: 8px;
 }

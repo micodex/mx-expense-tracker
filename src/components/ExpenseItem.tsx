@@ -5,7 +5,10 @@ import type { Transaction } from "../App";
 interface Props {
   transaction: Transaction;
   handleDelete: (id: number) => void;
-  handleEdit: (trans: Transaction) => void;
+  handleEdit: (
+    event: React.MouseEvent<HTMLButtonElement>,
+    trans: Transaction
+  ) => void;
 }
 
 const ExpenseItem = ({ transaction, handleDelete, handleEdit }: Props) => {
@@ -13,7 +16,7 @@ const ExpenseItem = ({ transaction, handleDelete, handleEdit }: Props) => {
     <div
       dir="rtl"
       key={transaction.id}
-      className={`
+      className={`transaction
           flex justify-between items-center rounded-lg border-2
         bg-white border-gray-200 hover:border-gray-300 transition-border duration-60 p-4
       `}
@@ -39,9 +42,10 @@ const ExpenseItem = ({ transaction, handleDelete, handleEdit }: Props) => {
           {transaction.amount}{" "}
           <span className="text-xs text-gray-700">تومان</span>
         </div>
+        {/* edit button */}
         <button
           className="text-blue-600 hover:text-blue-800 p-1"
-          onClick={() => handleEdit(transaction)}
+          onClick={(event) => handleEdit(event, transaction)}
         >
           <svg
             className="h-5 w-5"
@@ -57,7 +61,7 @@ const ExpenseItem = ({ transaction, handleDelete, handleEdit }: Props) => {
             />
           </svg>
         </button>
-
+        {/* delete button */}
         <button
           onClick={() => handleDelete(transaction.id)}
           className="text-red-600 hover:text-red-800 p-1"
