@@ -16,7 +16,7 @@ const Dashboard = ({ totalExpense, totalIncome }: Props) => {
         </div>
         <div>
           <h3 className="text-gray-500 text-sm font-medium">مجموع درامد‌ها</h3>
-          <p className="text-2xl font-bold text-green-600 mt-1">
+          <p className="text-2xl font-bold text-gray-600 mt-1">
             {totalIncome} <span className="text-sm">تومان</span>
           </p>
         </div>
@@ -28,7 +28,7 @@ const Dashboard = ({ totalExpense, totalIncome }: Props) => {
         </div>
         <div>
           <h3 className="text-gray-500 text-sm font-medium">مجموع هزینه‌ها</h3>
-          <p className="text-2xl font-bold text-red-600 mt-1">
+          <p className="text-2xl font-bold text-gray-600 mt-1">
             {totalExpense} <span className="text-sm">تومان</span>
           </p>
         </div>
@@ -39,7 +39,7 @@ const Dashboard = ({ totalExpense, totalIncome }: Props) => {
         </div>
         <div>
           <h3 className="text-gray-500 text-sm font-medium">موجودی</h3>
-          <p className="text-2xl font-bold text-blue-600 mt-1">
+          <p className="text-2xl font-bold text-gray-600 mt-1">
             {totalIncome - totalExpense} <span className="text-sm">تومان</span>
           </p>
         </div>

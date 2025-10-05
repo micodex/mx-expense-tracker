@@ -14,6 +14,12 @@ export interface Transaction {
   category: string;
   date: string;
 }
+export type Summary = {
+  [key: string]: {
+    total: number;
+    type: "income" | "expense";
+  };
+};
 
 function App() {
   // get saved transactions from local storage or []
@@ -141,18 +147,18 @@ function App() {
     }, 250);
   };
 
-  const categorySummary: Record<string, number> = transactions.reduce(
-    (acc, exp) => {
-      const category = exp.category;
-      if (!acc[category]) {
-        acc[category] = 0;
-      }
-      acc[category] += Math.abs(exp.amount);
-      console.log(acc);
-      return acc;
-    },
-    {} as Record<string, number>
-  );
+  const categorySummary: Summary = transactions.reduce((acc, trans) => {
+    const category = trans.category;
+
+    if (!acc[category]) {
+      acc[category] = { total: 0, type: trans.type };
+    }
+
+    acc[category].total += Math.abs(trans.amount);
+
+    console.log(acc);
+    return acc;
+  }, {} as Summary);
 
   // filter transaction
   const filteredTransactions = transactions.filter((exp) => {
