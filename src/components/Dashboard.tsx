@@ -10,7 +10,7 @@ interface Props {
 const Dashboard = ({ totalExpense, totalIncome }: Props) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 p-6 ">
+      <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 p-6">
         <div className="flex justify-center items-center text-xl p-4 bg-green-50 text-green-500 rounded-full aspect-1/1">
           <FaArrowTrendUp />
         </div>
