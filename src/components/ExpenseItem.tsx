@@ -17,8 +17,8 @@ const ExpenseItem = ({ transaction, handleDelete, handleEdit }: Props) => {
       dir="rtl"
       key={transaction.id}
       className={`transaction
-          flex justify-between items-center rounded-lg border-2
-        bg-white border-gray-200 hover:border-gray-300 transition-border duration-60 p-4
+          flex justify-between items-center rounded-sm border-b-2
+        bg-white border-gray-200 hover:bg-gray-50 transition-border duration-60 p-4
       `}
     >
       <div className="">

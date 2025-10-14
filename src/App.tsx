@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 import CategorySummary from "./components/CategorySummary";
 import SideBar from "./components/SideBar";
 import Topbar from "./components/TopBar";
+import ChartPieDonut from "@/components/charts/ChartPieDonut";
 
 export interface Transaction {
   id: number;
@@ -20,6 +21,7 @@ export type Summary = {
   [key: string]: {
     total: number;
     type: "income" | "expense";
+    name: string;
   };
 };
 
@@ -156,12 +158,11 @@ function App() {
     const category = trans.category;
 
     if (!acc[category]) {
-      acc[category] = { total: 0, type: trans.type };
+      acc[category] = { total: 0, type: trans.type, name: trans.name };
     }
 
     acc[category].total += Math.abs(trans.amount);
 
-    console.log(acc);
     return acc;
   }, {} as Summary);
 
@@ -208,6 +209,44 @@ function App() {
     setIsEditing(true);
   };
 
+  const expenseChartData = (categorySummary: Summary) => {
+    const fill = [
+      "var(--color-chrome)",
+      "var(--color-safari)",
+      "var(--color-firefox)",
+      "var(--color-edge)",
+      "var(--color-other)",
+    ];
+    const newData = Object.values(categorySummary).map((item, index) => {
+      // skip incomes
+      if (item.type === "expense") {
+        const newItem = { ...item, fill: fill[index] };
+        return newItem;
+      }
+    });
+    console.log(newData);
+    return newData;
+  };
+
+  const IncomeChartData = (categorySummary: Summary) => {
+    const fill = [
+      "var(--color-chrome)",
+      "var(--color-safari)",
+      "var(--color-firefox)",
+      "var(--color-edge)",
+      "var(--color-other)",
+    ];
+    const newData = Object.values(categorySummary).map((item, index) => {
+      // skip expense
+      if (item.type === "income") {
+        const newItem = { ...item, fill: fill[index] };
+        return newItem;
+      }
+    });
+    console.log(newData);
+    return newData;
+  };
+
   return (
     <div className="flex p-6 bg-gray-50">
       <SideBar
@@ -226,6 +265,20 @@ function App() {
         <div className="max-w-7xl mx-auto">
           {/* dashboards cards */}
           <Dashboard totalIncome={totalIncome} totalExpense={totalExpense} />
+          <div className="mb-10">
+            <div className="grid grid-cols-2 gap-6">
+              <ChartPieDonut
+                title={"هزینه"}
+                data={expenseChartData(categorySummary)}
+                total={totalExpense}
+              />
+              <ChartPieDonut
+                title={"درامد"}
+                data={IncomeChartData(categorySummary)}
+                total={totalIncome}
+              />
+            </div>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Form Section */}
             <div className="lg:col-span-1">

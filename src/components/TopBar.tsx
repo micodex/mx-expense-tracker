@@ -1,3 +1,5 @@
+import { Moon } from "lucide-react";
+
 interface TopbarProps {
   sidebarOpen: boolean;
 }
@@ -14,7 +16,9 @@ export default function Topbar({ sidebarOpen }: TopbarProps) {
           هزینه‌های روزانه‌ات رو به راحتی ثبت کن
         </span>
       </div>
-      <div className="text-gray-600">👤 کاربر</div>
+      <div className="text-gray-600">
+        <Moon />
+      </div>
     </div>
   );
 }
