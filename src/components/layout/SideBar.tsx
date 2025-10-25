@@ -1,10 +1,11 @@
-interface SideBarProps {
-  activePage: string;
-  setActivePage: (page: string) => void;
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
-}
+// interface SideBarProps {
+//   activePage: string;
+//   setActivePage: (page: string) => void;
+//   sidebarOpen: boolean;
+//   setSidebarOpen: (open: boolean) => void;
+// }
 
+// icons
 import { LayoutDashboard } from "lucide-react";
 import { ArrowRightLeft } from "lucide-react";
 import { ChartPie } from "lucide-react";
@@ -12,13 +13,9 @@ import { Settings } from "lucide-react";
 import { SwatchBook } from "lucide-react";
 import { User } from "lucide-react";
 import { Menu } from "lucide-react";
+import { useApp } from "@/context/AppContext";
 
-const SideBar = ({
-  activePage,
-  setActivePage,
-  sidebarOpen,
-  setSidebarOpen,
-}: SideBarProps) => {
+export default function SideBar() {
   const menuItems = [
     {
       name: "Dashboard",
@@ -47,6 +44,8 @@ const SideBar = ({
     },
   ];
 
+  const { activePage, setActivePage, sidebarOpen, toggleSidebar } = useApp();
+
   return (
     <div
       className={`${
@@ -57,7 +56,7 @@ const SideBar = ({
       <div className="p-2 border-b border-gray-200">
         <div className="">
           <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
+            onClick={() => toggleSidebar()}
             className={`h-14 px-3 ${
               !sidebarOpen ? "justify-center" : ""
             } w-full flex items-center justify-between p-1 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-colors`}
@@ -116,6 +115,4 @@ const SideBar = ({
       </div>
     </div>
   );
-};
-
-export default SideBar;
+}

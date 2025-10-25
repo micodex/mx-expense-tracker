@@ -1,10 +1,9 @@
 import { Moon } from "lucide-react";
+import { useApp } from "@/context/AppContext";
 
-interface TopbarProps {
-  sidebarOpen: boolean;
-}
+export default function Topbar() {
+  const { sidebarOpen } = useApp();
 
-export default function Topbar({ sidebarOpen }: TopbarProps) {
   return (
     <div
       className={`$text-xl bg-white shadow-sm flex items-center justify-between h-18 py-2 px-8 fixed left-0 top-0 z-10 transition-all duration-300`}

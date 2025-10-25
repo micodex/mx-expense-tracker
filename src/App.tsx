@@ -5,25 +5,14 @@ import ExpenseItem from "./components/ExpenseItem";
 import NoExpense from "./components/NoExpense";
 import Dashboard from "./components/Dashboard";
 import CategorySummary from "./components/CategorySummary";
-import SideBar from "./components/SideBar";
-import Topbar from "./components/TopBar";
+import SideBar from "./components/layout/SideBar";
+import Topbar from "./components/layout/TopBar";
 import ChartPieDonut from "@/components/charts/ChartPieDonut";
 
-export interface Transaction {
-  id: number;
-  name: string;
-  amount: number;
-  type: "income" | "expense";
-  category: string;
-  date: string;
-}
-export type Summary = {
-  [key: string]: {
-    total: number;
-    type: "income" | "expense";
-    name: string;
-  };
-};
+import type { Transaction } from "./types";
+
+import type { Summary } from "./types";
+import type { TransactionType } from "./types";
 
 function App() {
   const [activePage, setActivePage] = useState("Dashboard");
@@ -175,7 +164,7 @@ function App() {
     return matchesFilter && matchesSearch;
   });
 
-  const handleTypeChange = (type: "income" | "expense") => {
+  const handleTypeChange = (type: TransactionType) => {
     setTransaction((prev) => ({ ...prev, type: type }));
   };
 
@@ -249,13 +238,8 @@ function App() {
 
   return (
     <div className="flex p-6 bg-gray-50">
-      <SideBar
-        activePage={activePage}
-        setActivePage={setActivePage}
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-      />
-      <Topbar sidebarOpen={sidebarOpen} />
+      <SideBar />
+      <Topbar />
       {/* main content */}
       <div
         className={`flex-1 mt-17 ${
@@ -264,7 +248,7 @@ function App() {
       >
         <div className="max-w-7xl mx-auto">
           {/* dashboards cards */}
-          <Dashboard totalIncome={totalIncome} totalExpense={totalExpense} />
+          <Dashboard />
           <div className="mb-10">
             <div className="grid grid-cols-2 gap-6">
               <ChartPieDonut
