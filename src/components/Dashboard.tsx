@@ -1,13 +1,11 @@
 import { HiOutlineCreditCard } from "react-icons/hi2";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaArrowTrendDown } from "react-icons/fa6";
+import { useTransactions } from "@/hooks/useTransactions";
 
-interface Props {
-  totalExpense: number;
-  totalIncome: number;
-}
+const Dashboard = () => {
+  const { totals } = useTransactions();
 
-const Dashboard = ({ totalExpense, totalIncome }: Props) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
       <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 p-6">
@@ -17,7 +15,7 @@ const Dashboard = ({ totalExpense, totalIncome }: Props) => {
         <div>
           <h3 className="text-gray-500 text-sm font-medium">مجموع درامد‌ها</h3>
           <p className="text-2xl font-bold text-gray-600 mt-1">
-            {totalIncome} <span className="text-sm">تومان</span>
+            {totals.income} <span className="text-sm">تومان</span>
           </p>
         </div>
       </div>
@@ -29,7 +27,7 @@ const Dashboard = ({ totalExpense, totalIncome }: Props) => {
         <div>
           <h3 className="text-gray-500 text-sm font-medium">مجموع هزینه‌ها</h3>
           <p className="text-2xl font-bold text-gray-600 mt-1">
-            {totalExpense} <span className="text-sm">تومان</span>
+            {totals.expense} <span className="text-sm">تومان</span>
           </p>
         </div>
       </div>
@@ -40,7 +38,8 @@ const Dashboard = ({ totalExpense, totalIncome }: Props) => {
         <div>
           <h3 className="text-gray-500 text-sm font-medium">موجودی</h3>
           <p className="text-2xl font-bold text-gray-600 mt-1">
-            {totalIncome - totalExpense} <span className="text-sm">تومان</span>
+            {totals.income - totals.expense}
+            <span className="text-sm">تومان</span>
           </p>
         </div>
       </div>

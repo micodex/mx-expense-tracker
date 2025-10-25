@@ -1,6 +1,6 @@
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaArrowTrendDown } from "react-icons/fa6";
-import type { Transaction } from "../App";
+import type { Transaction } from "@/types";
 
 interface Props {
   transaction: Transaction;

@@ -1,4 +1,5 @@
-import type { Summary } from "../App";
+import type { Summary } from "@/types";
+
 
 interface Props {
   categorySummary: Summary;
