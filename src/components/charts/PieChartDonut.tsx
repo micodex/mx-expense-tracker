@@ -43,20 +43,18 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function ChartPieDonut({
+export default function PieChartDonut({
   data,
-  title,
   total,
 }: {
   data: any;
-  title: string;
   total: number;
 }) {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>نمودار دسته‌بندی‌ها</CardTitle>
-        <CardDescription>همه {title} ها</CardDescription>
+        <CardDescription>همه ها</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -110,7 +108,7 @@ export default function ChartPieDonut({
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          مجموع {title} شما
+          مجموع شما
         </div>
         {/* <div className="text-muted-foreground leading-none">
           Showing total visitors for the last 6 months

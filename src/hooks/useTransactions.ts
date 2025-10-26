@@ -4,6 +4,15 @@ import { useState, useEffect, useMemo } from "react";
 import type { Transaction } from "@/types";
 
 export function useTransactions() {
+  const [transaction, setTransaction] = useState<Transaction>({
+    id: 0,
+    name: "",
+    amount: 0,
+    type: "expense",
+    category: "",
+    date: "",
+  });
+
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
     const saved = localStorage.getItem("transactions");
     return saved ? JSON.parse(saved) : [];
@@ -32,5 +41,5 @@ export function useTransactions() {
     return { income, expense };
   }, [transactions]);
 
-  return { totals };
+  return { totals, transactions, setTransactions, transaction, setTransaction };
 }

@@ -1,7 +1,7 @@
 import { Moon } from "lucide-react";
 import { useApp } from "@/context/AppContext";
 
-export default function Topbar() {
+export default function TopBar() {
   const { sidebarOpen } = useApp();
 
   return (
