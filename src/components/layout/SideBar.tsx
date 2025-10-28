@@ -1,10 +1,3 @@
-// interface SideBarProps {
-//   activePage: string;
-//   setActivePage: (page: string) => void;
-//   sidebarOpen: boolean;
-//   setSidebarOpen: (open: boolean) => void;
-// }
-
 // icons
 import { LayoutDashboard } from "lucide-react";
 import { ArrowRightLeft } from "lucide-react";
@@ -45,7 +38,6 @@ export default function SideBar() {
   ];
 
   const { activePage, setActivePage, sidebarOpen, toggleSidebar } = useApp();
-
   return (
     <div
       className={`${

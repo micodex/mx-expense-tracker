@@ -1,12 +1,16 @@
-import { useState } from "react";
-import { useTransactions } from "@/hooks/useTransactions";
 import { incomeCategories, expenseCategories } from "@/lib/constants";
 import type { Transaction, TransactionType } from "@/types";
-
-export function TransactionForm() {
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-
-  const { setTransactions, transaction, setTransaction } = useTransactions();
+import { useApp } from "@/context/AppContext";
+import { removeDashedBorder } from "@/utils/helpers";
+export function TransactionForm({
+  isEditing,
+  setIsEditing,
+}: {
+  isEditing: boolean;
+  setIsEditing: (e: boolean) => void;
+}) {
+  const { transaction, transactions, setTransactions, setTransaction } =
+    useApp();
 
   // ------ create a new transaction ------
   const handleSubmit = (e: React.FormEvent) => {
@@ -40,7 +44,7 @@ export function TransactionForm() {
       setTransactions((prev) => [...prev, newTransaction]);
     }
 
-    // removeDashedBorder();
+    removeDashedBorder();
   };
 
   //  ------ Handle input change ------
@@ -177,7 +181,7 @@ export function TransactionForm() {
                   category: "",
                   date: new Date().toISOString().split("T")[0],
                 });
-                // removeDashedBorder();
+                removeDashedBorder();
               }}
               className="w-full py-2 mt-2 font-bold text-lg rounded-lg text-zinc-200 bg-zinc-800 cursor-pointer hover:bg-zinc-900"
             >

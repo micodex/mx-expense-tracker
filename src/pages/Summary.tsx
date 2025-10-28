@@ -1,20 +1,11 @@
 import type { Summary } from "@/types";
-import { useTransactions } from "@/hooks/useTransactions";
+import { useApp } from "@/context/AppContext";
+import { createSummary } from "@/utils/helpers";
 
 export default function SummaryPage() {
-  const { transactions } = useTransactions();
+  const { transactions } = useApp();
 
-  const categorySummary: Summary = transactions.reduce((acc, trans) => {
-    const category = trans.category;
-
-    if (!acc[category]) {
-      acc[category] = { total: 0, type: trans.type, name: trans.name };
-    }
-
-    acc[category].total += Math.abs(trans.amount);
-
-    return acc;
-  }, {} as Summary);
+  const categorySummary: Summary = createSummary(transactions);
 
   return (
     <div className="bg-white rounded-xl shadow-xl shadow-slate-200 p-6 mt-6">

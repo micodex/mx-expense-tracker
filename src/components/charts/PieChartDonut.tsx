@@ -46,15 +46,17 @@ const chartConfig = {
 export default function PieChartDonut({
   data,
   total,
+  title,
 }: {
   data: any;
   total: number;
+  title: string;
 }) {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>نمودار دسته‌بندی‌ها</CardTitle>
-        <CardDescription>همه ها</CardDescription>
+        <CardTitle>{title}</CardTitle>
+        {/* <CardDescription> ... </CardDescription> */}
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -106,14 +108,14 @@ export default function PieChartDonut({
           </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
+      {/* <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          مجموع شما
+          ...مجموع شما
         </div>
-        {/* <div className="text-muted-foreground leading-none">
+        <div className="text-muted-foreground leading-none">
           Showing total visitors for the last 6 months
-        </div> */}
-      </CardFooter>
+        </div>
+      </CardFooter> */}
     </Card>
   );
 }

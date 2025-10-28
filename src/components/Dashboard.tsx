@@ -1,14 +1,16 @@
+import { useApp } from "@/context/AppContext";
+
+// icons
 import { HiOutlineCreditCard } from "react-icons/hi2";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaArrowTrendDown } from "react-icons/fa6";
-import { useTransactions } from "@/hooks/useTransactions";
 
 const Dashboard = () => {
-  const { totals } = useTransactions();
+  const { totals } = useApp();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 p-6">
+      <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 px-6 py-12">
         <div className="flex justify-center items-center text-xl p-4 bg-green-50 text-green-500 rounded-full aspect-1/1">
           <FaArrowTrendUp />
         </div>
@@ -20,7 +22,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 p-6 ">
+      <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 px-6 py-12">
         <div className="flex justify-center items-center text-xl p-4 bg-red-50 text-red-500 rounded-full aspect-1/1 ">
           <FaArrowTrendDown />
         </div>
@@ -31,7 +33,7 @@ const Dashboard = () => {
           </p>
         </div>
       </div>
-      <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 p-6 ">
+      <div className="flex gap-4 bg-white border border-gray-200 rounded-md shadow-xl shadow-slate-100 px-6 py-12">
         <div className="flex justify-center items-center text-2xl p-4 bg-blue-50 text-blue-500 rounded-full aspect-1/1">
           <HiOutlineCreditCard />
         </div>

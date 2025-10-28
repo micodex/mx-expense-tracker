@@ -1,15 +1,25 @@
 import { useState } from "react";
-import { incomeCategories, expenseCategories } from "@/lib/constants";
-import { useTransactions } from "@/hooks/useTransactions";
-import NoExpense from "@/components/NoExpense";
+import { useApp } from "@/context/AppContext";
+
+// components
 import TransactionItem from "./TransactionItem";
-import type { Summary } from "@/types";
+import NoExpense from "@/components/NoExpense";
+
+// helpers
+import { removeDashedBorder } from "@/utils/helpers";
+import { expenseCategories } from "@/lib/constants";
+
+// types
 import type { Transaction } from "@/types";
 
-export default function TransactionList() {
+export default function TransactionList({
+  setIsEditing,
+}: {
+  setIsEditing: (e: boolean) => void;
+}) {
   const [filter, setFilter] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const { setTransactions, transactions, setTransaction } = useTransactions();
+  const { transactions, setTransactions, setTransaction } = useApp();
 
   const filteredTransactions = transactions.filter((exp) => {
     const matchesFilter = filter === "all" || exp.category === filter;
@@ -24,7 +34,7 @@ export default function TransactionList() {
     if (element) {
       element.classList.add("animate-fadeout");
     }
-    // wait for the fade out animation to finish
+    // wait for the fade-out animation to finish
     setTimeout(() => {
       setTransactions((prev) => prev.filter((exp) => exp.id !== id));
     }, 250);
@@ -34,7 +44,6 @@ export default function TransactionList() {
     event: React.MouseEvent<HTMLButtonElement>,
     trans: Transaction
   ) => {
-    // remove all dashed borders
     removeDashedBorder();
     // add black border to editing item
     event.currentTarget.closest(".transaction")?.classList.add("dashed-border");
@@ -48,13 +57,7 @@ export default function TransactionList() {
       date: trans.date,
     });
 
-    // setIsEditing(true);
-  };
-
-  const removeDashedBorder = (): void => {
-    // function to remove dashed border from all transaction elements
-    const transItems = document.querySelectorAll(".transaction");
-    transItems.forEach((item) => item.classList.remove("dashed-border"));
+    setIsEditing(true);
   };
 
   return (
@@ -66,7 +69,7 @@ export default function TransactionList() {
         <div className="relative w-full ">
           <input
             type="text"
-            // value={searchTerm}
+            value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="جستجو"
             className="w-full border-none outline-2 outline-gray-300 rounded-lg pr-4 pl-10 py-2 focus:outline-sky-300"
