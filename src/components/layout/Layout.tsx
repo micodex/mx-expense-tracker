@@ -1,3 +1,5 @@
+// fixed side bar and nav bar components layout
+
 import { useApp } from "@/context/AppContext";
 import SideBar from "./SideBar";
 import TopBar from "./TopBar";

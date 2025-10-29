@@ -1,12 +1,16 @@
 // icons
-import { LayoutDashboard } from "lucide-react";
-import { ArrowRightLeft } from "lucide-react";
-import { ChartPie } from "lucide-react";
-import { Settings } from "lucide-react";
-import { SwatchBook } from "lucide-react";
-import { User } from "lucide-react";
-import { Menu } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+
+import {
+  LayoutDashboard,
+  Star,
+  ArrowRightLeft,
+  ChartPie,
+  Settings,
+  SwatchBook,
+  User,
+  Menu,
+} from "lucide-react";
 
 export default function SideBar() {
   const menuItems = [
@@ -31,7 +35,7 @@ export default function SideBar() {
       label: "آنالیز",
     },
     {
-      name: "Setting",
+      name: "Settings",
       icon: <Settings />,
       label: "تنظیمات",
     },
@@ -54,7 +58,7 @@ export default function SideBar() {
             } w-full flex items-center justify-between p-1 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-colors`}
           >
             {sidebarOpen && (
-              <h1 className="text-xl font-bold text-gray-800">منو</h1>
+              <h1 className="text-xl font-bold text-gray-800">MX</h1>
             )}
             <Menu />
           </button>

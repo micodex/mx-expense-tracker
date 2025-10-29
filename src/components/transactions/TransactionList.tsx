@@ -45,7 +45,7 @@ export default function TransactionList({
     trans: Transaction
   ) => {
     removeDashedBorder();
-    // add black border to editing item
+    // add dashed border to editing item
     event.currentTarget.closest(".transaction")?.classList.add("dashed-border");
 
     setTransaction({

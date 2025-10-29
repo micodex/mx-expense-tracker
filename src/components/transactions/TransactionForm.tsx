@@ -1,7 +1,12 @@
-import { incomeCategories, expenseCategories } from "@/lib/constants";
-import type { Transaction, TransactionType } from "@/types";
 import { useApp } from "@/context/AppContext";
+
+// helpers
+import { incomeCategories, expenseCategories } from "@/lib/constants";
 import { removeDashedBorder } from "@/utils/helpers";
+
+// types
+import type { Transaction, TransactionType } from "@/types";
+
 export function TransactionForm({
   isEditing,
   setIsEditing,
@@ -9,8 +14,7 @@ export function TransactionForm({
   isEditing: boolean;
   setIsEditing: (e: boolean) => void;
 }) {
-  const { transaction, transactions, setTransactions, setTransaction } =
-    useApp();
+  const { transaction, setTransactions, setTransaction } = useApp();
 
   // ------ create a new transaction ------
   const handleSubmit = (e: React.FormEvent) => {
@@ -60,6 +64,7 @@ export function TransactionForm({
     }));
   };
 
+  // income & expense buttons
   const handleTypeChange = (type: TransactionType) => {
     setTransaction((prev) => ({ ...prev, type: type }));
   };

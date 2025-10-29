@@ -110,7 +110,7 @@ export default function PieChartDonut({
       </CardContent>
       {/* <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          ...مجموع شما
+          ...
         </div>
         <div className="text-muted-foreground leading-none">
           Showing total visitors for the last 6 months

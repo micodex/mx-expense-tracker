@@ -1,6 +1,7 @@
 // icons
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FaArrowTrendDown } from "react-icons/fa6";
+
 import type { Transaction } from "@/types";
 
 interface Props {
@@ -18,11 +19,11 @@ const ExpenseItem = ({ transaction, handleDelete, handleEdit }: Props) => {
       dir="rtl"
       key={transaction.id}
       className={`transaction
-          flex justify-between items-center rounded-sm border-b-2
+          flex justify-between items-center border-b-2
         bg-white border-gray-200 hover:bg-gray-50 transition-border duration-60 p-4
       `}
     >
-      <div className="">
+      <div className="space-y-1">
         <h3 className="font-semibold">{transaction.name}</h3>
         <div className="flex items-center gap-3">
           <span className="text-sm text-gray-600">{transaction.category}</span>
