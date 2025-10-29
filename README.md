@@ -6,7 +6,7 @@
 
 ![screenshot](src/assets/screenshot.jpg)
 
-### برای پیش‌نمایش زنده اینجا کلیک کنید 👈 [پیش‌نمایش](https://micodex.github.io/mx-expense-tracker/)
+### برای پیش‌نمایش کلیک کنید 👈 [پیش‌نمایش](https://micodex.github.io/mx-expense-tracker/)
 
 ## ✨ امکانات فعلی
 
