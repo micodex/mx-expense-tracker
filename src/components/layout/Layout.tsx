@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <SideBar />
       <div
         className={`flex-1 mt-17 transition-all duration-300 p-6 ${
-          sidebarOpen ? "mr-64" : "mr-20"
+          sidebarOpen ? "mr-20 md:mr-64" : "mr-20"
         }`}
       >
         <TopBar />

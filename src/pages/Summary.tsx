@@ -6,13 +6,12 @@ import type { Summary } from "@/types";
 
 export default function SummaryPage() {
   const { transactions } = useApp();
-
   const categorySummary: Summary = createSummary(transactions);
 
   return (
     <div className="bg-white rounded-xl shadow-xl shadow-slate-200 p-6 mt-6">
       <h2 className="text-lg font-semibold text-gray-800">خلاصه هزینه‌ها</h2>
-      <div className="grid grid-cols-4 gap-6 mt-4 ">
+      <div className="grid  md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 ">
         {Object.keys(categorySummary).length !== 0 ? (
           Object.entries(categorySummary).map(([category, data], index) => (
             <div

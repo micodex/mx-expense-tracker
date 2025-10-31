@@ -49,7 +49,7 @@ export default function TotalsPieCharts() {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-6">
+    <div className="grid md:grid-cols-2 gap-6">
       <PieChartDonut
         data={expenseChartData(categorySummary)}
         total={totals.income}
