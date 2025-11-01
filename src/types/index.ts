@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export interface Transaction {
   id: number;
   name: string;
@@ -14,5 +16,6 @@ export type Summary = {
     total: number;
     type: "income" | "expense";
     name: string;
+    icon: LucideIcon;
   };
 };

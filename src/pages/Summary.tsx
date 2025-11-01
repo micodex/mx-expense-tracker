@@ -11,27 +11,34 @@ export default function SummaryPage() {
   return (
     <div className="bg-white rounded-xl shadow-xl shadow-slate-200 p-6 mt-6">
       <h2 className="text-lg font-semibold text-gray-800">خلاصه هزینه‌ها</h2>
-      <div className="grid  md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 ">
+      <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
         {Object.keys(categorySummary).length !== 0 ? (
-          Object.entries(categorySummary).map(([category, data], index) => (
-            <div
-              key={index}
-              className={`rounded-md px-2 py-4 text-gray-800 ${
-                data.type === "income"
-                  ? "ring-green-200 from-green-50 text-green-800"
-                  : ""
-              } ring-2 bg-gradient-to-br ring-gray-200 from-gray-50 to-slate-50 `}
-            >
-              <div className="mb-2 font-semibold text-md">{category}</div>
+          Object.entries(categorySummary).map(
+            ([category, { type, total, icon: Icon }], index) => (
               <div
-                className={`${
-                  data.type === "income" ? "" : ""
-                } font-bold text-lg `}
+                key={index}
+                className={`flex flex-col gap-6 rounded-md px-2 py-4 text-gray-800 ${
+                  type === "income"
+                    ? "ring-green-200 from-white text-green-700"
+                    : ""
+                } ring-2 bg-gradient-to-br ring-gray-200 from-gray-50 to-slate-50 `}
               >
-                {data.total} <span className="text-xs">تومان</span>
+                <div className="flex justify-between text-md">
+                  <span>{category}</span>
+                  <span
+                    className={`${
+                      type === "income" ? " text-green-700" : ""
+                    } text-xs text-gray-600`}
+                  >
+                    <Icon size={20} />
+                  </span>
+                </div>
+                <div className="font-bold text-4xl">
+                  {total} <span className="text-xs">تومان</span>
+                </div>
               </div>
-            </div>
-          ))
+            )
+          )
         ) : (
           <span className="text-sm text-gray-600">تراکنشی پیدا نشد!</span>
         )}
