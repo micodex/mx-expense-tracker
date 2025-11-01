@@ -3,40 +3,40 @@ import { useApp } from "@/context/AppContext";
 
 import {
   LayoutDashboard,
-  Star,
   ArrowRightLeft,
   ChartPie,
   Settings,
   SwatchBook,
   User,
   Menu,
+  Gem,
 } from "lucide-react";
 
 export default function SideBar() {
   const menuItems = [
     {
       name: "Dashboard",
-      icon: <LayoutDashboard />,
+      icon: LayoutDashboard,
       label: "داشبورد",
     },
     {
       name: "Transactions",
-      icon: <ArrowRightLeft />,
+      icon: ArrowRightLeft,
       label: "تراکنش‌ها",
     },
     {
       name: "Categories",
-      icon: <SwatchBook />,
+      icon: SwatchBook,
       label: "دسته‌بندی‌ها",
     },
     {
       name: "Analysis",
-      icon: <ChartPie />,
+      icon: ChartPie,
       label: "آنالیز",
     },
     {
       name: "Settings",
-      icon: <Settings />,
+      icon: Settings,
       label: "تنظیمات",
     },
   ];
@@ -58,7 +58,9 @@ export default function SideBar() {
             } w-full flex items-center justify-between p-1 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-colors`}
           >
             {sidebarOpen && (
-              <h1 className="text-xl font-bold text-gray-800">MX</h1>
+              <h1 className="flex gap-2 font-bold text-blue-500">
+                <Gem /> mx
+              </h1>
             )}
             <Menu />
           </button>
@@ -67,28 +69,28 @@ export default function SideBar() {
       {/* sidenav pages */}
       <nav className="mt-5">
         <ul className="space-y-2 px-2">
-          {menuItems.map((item) => (
-            <li key={item.name}>
+          {menuItems.map(({ name, icon: Icon, label }) => (
+            <li key={name}>
               <button
-                onClick={() => setActivePage(item.name)}
+                onClick={() => setActivePage(name)}
                 className={`w-full flex items-center p-3 rounded-lg${
                   !sidebarOpen ? " justify-center" : ""
                 } ${
-                  activePage === item.name
+                  activePage === name
                     ? "bg-blue-100 text-blue-500"
                     : "text-gray-800 hover:bg-gray-100"
                 } `}
               >
                 <span
                   className={`${
-                    activePage === item.name ? "text-blue-600" : "text-gray-800"
+                    activePage === name ? "text-blue-600" : "text-gray-800"
                   }`}
                 >
-                  {item.icon}
+                  <Icon size={20} />
                 </span>
 
                 {sidebarOpen && (
-                  <span className="mr-3 font-medium ">{item.label}</span>
+                  <span className="mr-3 font-medium ">{label}</span>
                 )}
               </button>
             </li>
