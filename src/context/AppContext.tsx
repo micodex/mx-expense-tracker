@@ -55,6 +55,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   // Save transactions to local storage
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
+    // console.log(transactions);
   }, [transactions]);
 
   // calculate total income and expense

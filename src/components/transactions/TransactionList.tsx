@@ -95,9 +95,9 @@ export default function TransactionList({
           onChange={(e) => setFilter(e.target.value)}
         >
           <option value="all">همه دسته‌بندی‌ها</option>
-          {expenseCategories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
+          {expenseCategories.map(({ label }) => (
+            <option key={label} value={label}>
+              {label}
             </option>
           ))}
         </select>

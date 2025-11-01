@@ -141,14 +141,14 @@ export function TransactionForm({
           >
             <option value="">انتخاب دسته</option>
             {transaction.type === "expense"
-              ? expenseCategories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
+              ? expenseCategories.map(({ label }) => (
+                  <option key={label} value={label}>
+                    {label}
                   </option>
                 ))
-              : incomeCategories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
+              : incomeCategories.map(({ label }) => (
+                  <option key={label} value={label}>
+                    {label}
                   </option>
                 ))}
           </select>
@@ -178,6 +178,7 @@ export function TransactionForm({
               type="button"
               onClick={() => {
                 setIsEditing(false);
+                // reset transaction
                 setTransaction({
                   id: 0,
                   name: "",
