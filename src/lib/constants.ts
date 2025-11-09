@@ -1,4 +1,5 @@
 // Categories for transactions
+import type { Transaction } from "@/types";
 import {
   House,
   Popcorn,
@@ -33,7 +34,7 @@ export const incomeCategories = [
   { label: "دیگر", icon: ShoppingBag },
 ];
 
-export const sampleData = [
+export const sampleData: Transaction[] = [
   {
     id: 1761990198112,
     name: "حقوق",

@@ -1,24 +1,26 @@
-import { Moon } from "lucide-react";
+import { Menu, User } from "lucide-react";
 import { useApp } from "@/context/AppContext";
 
 export default function TopBar() {
-  const { sidebarOpen } = useApp();
+  const { toggleSidebar } = useApp();
 
   return (
-    <div
-      className={`${
-        sidebarOpen ? "right-20 md:right-64" : "right-20"
-      } text-xl bg-white shadow-sm flex items-center justify-between h-18 py-2 px-8 fixed left-0 top-0 z-5 transition-all duration-300`}
-    >
-      <div className="">
-        <h2 className="text-lg font-semibold text-gray-700">مدیریت هزینه‌ها</h2>
-        <span className="text-xs md:text-sm text-gray-600">
-          هزینه‌های روزانه‌ات رو به راحتی ثبت کن
-        </span>
+    <header className="z-2 fixed top-0 right-0 left-0 bg-white px-2 md:px-6 h-16 border-b border-gray-200 shadow md:pr-70 transition-all flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <button
+          className="md:hidden p-2 rounded-md hover:bg-gray-100 active:bg-gray-200"
+          onClick={() => toggleSidebar()}
+        >
+          <Menu />
+        </button>
+        <h1 className="text-lg font-semibold text-gray-800">مدیریت هزینه‌ها</h1>
       </div>
-      <div className="text-gray-600">
-        <Moon />
+      <div className="flex items-center gap-2 text-gray-600">
+        <span>ورود</span>
+        <div className="w-8 flex justify-center items-center bg-gray-200 aspect-square rounded-full">
+          <User size={16} />
+        </div>
       </div>
-    </div>
+    </header>
   );
 }

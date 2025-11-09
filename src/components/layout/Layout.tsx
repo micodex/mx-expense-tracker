@@ -5,17 +5,26 @@ import SideBar from "./SideBar";
 import TopBar from "./TopBar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const { sidebarOpen } = useApp();
+  const { sidebarOpen, toggleSidebar } = useApp();
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
+      {/* fixed sidenav */}
       <SideBar />
-      <div
-        className={`flex-1 mt-17 transition-all duration-300 p-6 ${
-          sidebarOpen ? "mr-20 md:mr-64" : "mr-20"
-        }`}
-      >
-        <TopBar />
-        <div className="mt-6">{children}</div>
+
+      {/* overlay */}
+      {sidebarOpen && (
+        <div
+          onClick={() => toggleSidebar()}
+          className="z-1 fixed inset-0 bg-slate-950/20 md:hidden"
+        ></div>
+      )}
+
+      {/* fixed topbar */}
+      <TopBar />
+
+      {/* main content */}
+      <div className="p-2 pt-20 md:px-6 md:mr-64 transition-all duration-300">
+        <main className="z-0">{children}</main>
       </div>
     </div>
   );

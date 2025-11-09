@@ -1,15 +1,14 @@
-// icons
 import { useApp } from "@/context/AppContext";
 
+// icons
 import {
   LayoutDashboard,
   ArrowRightLeft,
   ChartPie,
   Settings,
   SwatchBook,
-  User,
-  Menu,
-  Gem,
+  X,
+  HandCoins,
 } from "lucide-react";
 
 export default function SideBar() {
@@ -43,74 +42,43 @@ export default function SideBar() {
 
   const { activePage, setActivePage, sidebarOpen, toggleSidebar } = useApp();
   return (
-    <div
-      className={`${
-        sidebarOpen ? "w-64" : "w-20"
-      } bg-white shadow-lg transition-all duration-300 ease-in-out fixed top-0 right-0 h-full z-10`}
+    <aside
+      className={`fixed z-3 bg-white top-0 right-0 w-64 h-screen transform md:translate-x-0 transition-all shadow-md
+        ${sidebarOpen ? "translate-x-0" : "translate-x-full"} `}
     >
-      {/* header */}
-      <div className="p-2 border-b border-gray-200">
-        <div className="">
-          <button
-            onClick={() => toggleSidebar()}
-            className={`h-14 px-3 ${
-              !sidebarOpen ? "justify-center" : ""
-            } w-full flex items-center justify-between p-1 rounded-md hover:bg-gray-100 active:bg-gray-200 transition-colors`}
-          >
-            {sidebarOpen && (
-              <h1 className="flex gap-2 font-bold text-blue-500">
-                <Gem /> mx
-              </h1>
-            )}
-            <Menu />
-          </button>
+      <div className="h-16 px-6 flex items-center justify-between border-gray-200 border-b">
+        <div className="flex items-center gap-2 text-blue-500">
+          <HandCoins className="" size={18} />
+          <span className="">mx tracker</span>
         </div>
+        <button
+          className="p-2 rounded-sm md:hidden hover:bg-gray-100 active:bg-gray-200"
+          onClick={() => toggleSidebar()}
+        >
+          <X />
+        </button>
       </div>
-      {/* sidenav pages */}
-      <nav className="mt-5">
-        <ul className="space-y-2 px-2">
-          {menuItems.map(({ name, icon: Icon, label }) => (
-            <li key={name}>
+
+      <nav className="px-2 py-6">
+        <ul>
+          {menuItems.map(({ name, label, icon: Icon }) => (
+            <li>
               <button
                 onClick={() => setActivePage(name)}
-                className={`w-full flex items-center p-3 rounded-lg${
-                  !sidebarOpen ? " justify-center" : ""
-                } ${
-                  activePage === name
-                    ? "bg-blue-100 text-blue-500"
-                    : "text-gray-800 hover:bg-gray-100"
-                } `}
+                className={`
+                  w-full px-4 py-2 rounded-md flex items-center gap-4
+                  transition duration-60 text-gray-800
+                  ${activePage === name ? "bg-blue-600 text-white" : ""}
+                  hover:bg-gray-200 hover:text-gray-800
+                `}
               >
-                <span
-                  className={`${
-                    activePage === name ? "text-blue-600" : "text-gray-800"
-                  }`}
-                >
-                  <Icon size={20} />
-                </span>
-
-                {sidebarOpen && (
-                  <span className="mr-3 font-medium ">{label}</span>
-                )}
+                <Icon size={22} />
+                <span>{label}</span>
               </button>
             </li>
           ))}
         </ul>
       </nav>
-      {/* profile */}
-      <div className="absolute bottom-0 w-full p-4 border-t border-gray-200">
-        <div className="flex items-center">
-          <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl font-bold">
-            <User />
-          </div>
-          {sidebarOpen && (
-            <div className="mr-3">
-              <p className="text-sm font-medium text-gray-800">نام کاربری</p>
-              <p className="mt-1 text-xs text-gray-500">مشاهده پروفایل</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+    </aside>
   );
 }
