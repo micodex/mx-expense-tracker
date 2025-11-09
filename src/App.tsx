@@ -18,10 +18,28 @@ function App() {
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto">
-        <Dashboard />
+      {activePage === "Dashboard" && (
+        <div className="max-w-7xl mx-auto">
+          <Dashboard />
+          <div className="mb-10">
+            <TotalsPieCharts />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-1">
+              <TransactionForm
+                isEditing={isEditing}
+                setIsEditing={setIsEditing}
+              />
+            </div>
+            <div className="lg:col-span-2 ">
+              <TransactionList setIsEditing={setIsEditing} />
+            </div>
+          </div>
+          <SummaryPage />
+        </div>
+      )}
 
-        {activePage === "Analysis" && (
+      {/* {activePage === "Analysis" && (
           <div className="mb-10">
             <TotalsPieCharts />
           </div>
@@ -41,10 +59,9 @@ function App() {
           </div>
         )}
 
-        {activePage === "Categories" && <SummaryPage />}
+        {activePage === "Categories" && <SummaryPage />}*/}
 
-        {activePage === "Settings" && <SettingsPage />}
-      </div>
+      {activePage === "Settings" && <SettingsPage />}
     </Layout>
   );
 }

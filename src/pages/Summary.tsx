@@ -11,13 +11,13 @@ export default function SummaryPage() {
   return (
     <div className="bg-white rounded-xl shadow-xl shadow-slate-200 p-6 mt-6">
       <h2 className="text-lg font-semibold text-gray-800">خلاصه هزینه‌ها</h2>
-      <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+      <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-6 mt-4">
         {Object.keys(categorySummary).length !== 0 ? (
           Object.entries(categorySummary).map(
             ([category, { type, total, icon: Icon }], index) => (
               <div
                 key={index}
-                className={`flex flex-col gap-6 rounded-md px-2 py-4 text-gray-800 ${
+                className={`flex flex-col gap-6 rounded-md p-6 text-gray-800 ${
                   type === "income"
                     ? "ring-green-200 from-white text-green-700"
                     : ""
@@ -30,7 +30,7 @@ export default function SummaryPage() {
                       type === "income" ? " text-green-700" : ""
                     } text-xs text-gray-600`}
                   >
-                    <Icon size={20} />
+                    <Icon size={22} />
                   </span>
                 </div>
                 <div className="font-bold text-4xl">

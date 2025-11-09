@@ -25,7 +25,7 @@ const AppContext = createContext<AppContextType | null>(null);
 // provider
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   // navigations state
-  const [activePage, setActivePage] = useState("Transactions");
+  const [activePage, setActivePage] = useState("Dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(() => {
     const saved = localStorage.getItem("sidebarOpen");
     return saved ? JSON.parse(saved) : true;

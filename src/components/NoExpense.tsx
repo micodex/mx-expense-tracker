@@ -1,4 +1,8 @@
+import { useApp } from "@/context/AppContext";
+import { sampleData } from "@/lib/constants";
+
 const NoExpense = () => {
+  const { setTransactions } = useApp();
   return (
     <div className="text-center py-12">
       <svg
@@ -18,6 +22,12 @@ const NoExpense = () => {
         تراکنشی پیدا نشد
       </h3>
       <p className="mt-1 text-sm text-gray-500">برای شروع یک هزینه اضافه کن</p>
+      <button
+        onClick={() => setTransactions(sampleData)}
+        className="mt-2 px-4 py-2 bg-gray-300 rounded-sm cursor-pointer active:scale-90 text-gray-800"
+      >
+        لود نمونه تراکنش
+      </button>
     </div>
   );
 };
