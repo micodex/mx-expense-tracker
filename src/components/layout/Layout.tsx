@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {sidebarOpen && (
         <div
           onClick={() => toggleSidebar()}
-          className="z-1 fixed inset-0 bg-slate-950/20 md:hidden"
+          className="z-1 fixed inset-0 bg-blue-900/10 md:hidden"
         ></div>
       )}
 
@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <TopBar />
 
       {/* main content */}
-      <div className="p-2 pt-20 md:px-6 md:mr-64 transition-all duration-300">
+      <div className="p-2 pt-24 md:px-6 md:mr-64 transition-all duration-300 overflow-hidden">
         <main className="z-0">{children}</main>
       </div>
     </div>

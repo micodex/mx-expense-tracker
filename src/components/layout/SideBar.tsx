@@ -8,8 +8,9 @@ import {
   Settings,
   SwatchBook,
   X,
-  HandCoins,
 } from "lucide-react";
+
+import Logo from "@/assets/logo.png";
 
 export default function SideBar() {
   const menuItems = [
@@ -43,13 +44,14 @@ export default function SideBar() {
   const { activePage, setActivePage, sidebarOpen, toggleSidebar } = useApp();
   return (
     <aside
-      className={`fixed z-3 bg-white top-0 right-0 w-64 h-screen transform md:translate-x-0 transition-all shadow-md
+      className={`fixed z-3 bg-white top-0 right-0 w-64 h-screen transform md:translate-x-0 transition-all shadow-md bg-white/70 backdrop-blur-lg
         ${sidebarOpen ? "translate-x-0" : "translate-x-full"} `}
     >
-      <div className="h-16 px-6 flex items-center justify-between border-gray-200 border-b">
+      <div className="h-18 px-6 flex items-center justify-between border-gray-200 border-b">
         <div className="flex items-center gap-2 text-blue-500">
-          <HandCoins className="" size={18} />
-          <span className="">mx tracker</span>
+          <div className="relative">
+            <img className="block w-22" src={Logo} alt="logo" />
+          </div>
         </div>
         <button
           className="p-2 rounded-sm md:hidden hover:bg-gray-100 active:bg-gray-200"
