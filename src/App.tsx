@@ -21,7 +21,7 @@ function App() {
   return (
     <Layout>
       {activePage === "Dashboard" && (
-        <div className="max-w-7xl mx-auto">
+        <div className="">
           <Dashboard />
           <div className="mb-10">
             <TotalsPieCharts />

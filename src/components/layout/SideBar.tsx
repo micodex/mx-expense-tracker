@@ -62,7 +62,7 @@ export default function SideBar() {
       <nav className="px-2 py-6">
         <ul>
           {menuItems.map(({ name, label, icon: Icon }) => (
-            <li>
+            <li key={name}>
               <button
                 onClick={() => setActivePage(name)}
                 className={`

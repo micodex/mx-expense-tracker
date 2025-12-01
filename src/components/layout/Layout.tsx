@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* main content */}
       <div className="p-2 pt-24 md:px-6 md:mr-64 transition-all duration-300 overflow-hidden">
-        <main className="z-0">{children}</main>
+        <main className="max-w-7xl mx-auto z-0">{children}</main>
       </div>
     </div>
   );
